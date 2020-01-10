@@ -9,18 +9,23 @@ const completed =
 const trash =
   'https://cdn2.iconfinder.com/data/icons/outline-icons-1/72/trashcan-512.png';
 
-const TodoList = ({todoItem, toggleTodoAction}) => {
-  console.log(todoItem);
+const TodoList = ({todoList, toggleTodoAction, deleteTodoAction}) => {
+  // console.log(todoList);
 
   const handleToggleTodo = (itemId, isCompleted, todoText) => {
     toggleTodoAction(itemId, isCompleted, todoText);
   };
 
+  const handleDeleteTodo = itemId => {
+    deleteTodoAction(itemId);
+  };
+
+  console.log('rdner');
   return (
     <FlatList
       bounces={false}
-      keyExtractor={item => item}
-      data={todoItem}
+      keyExtractor={item => item.id.toString()}
+      data={todoList}
       renderItem={({item}) => {
         const isCompleted = item.content.split('#')[0];
         const todoText = item.content.split('#')[1];
@@ -41,7 +46,7 @@ const TodoList = ({todoItem, toggleTodoAction}) => {
                 {todoText}
               </Todo>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleDeleteTodo(itemId)}>
               <Icon source={{uri: trash}} />
             </TouchableOpacity>
           </Container>

@@ -1,14 +1,15 @@
 import {connect} from 'react-redux';
-import {addTodoAction, toggleTodoAction} from '../actions';
+import {addTodoAction, toggleTodoAction, deleteTodoAction} from '../actions';
 import TodoListComponent from '../components/TodoListComponent';
 
 const mapStateToProps = state => ({
-  todoItem: state.todoItem,
+  todoList: state.todoItem.todoList,
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleTodoAction: (id, isCompleted, todoText) =>
-    dispatch(toggleTodoAction(id, isCompleted, todoText)),
+  toggleTodoAction: (itemId, isCompleted, todoText) =>
+    dispatch(toggleTodoAction(itemId, isCompleted, todoText)),
+  deleteTodoAction: itemId => dispatch(deleteTodoAction(itemId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoListComponent);

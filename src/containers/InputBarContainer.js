@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {addTodoAction} from '../actions';
+import {addTodoAction, fetchTodoListAction} from '../actions';
 import InputBarComponent from '../components/InputBarComponent';
 
 const mapDispatchToProps = dispatch => ({

@@ -33,21 +33,23 @@ const TodoList = ({todoList, toggleTodoAction, deleteTodoAction}) => {
 
         return (
           <Container>
-            <TouchableOpacity
-              onPress={() => handleToggleTodo(itemId, isCompleted, todoText)}>
-              {isCompleted === '1' ? (
-                <Icon source={{uri: notCompleted}} />
-              ) : (
-                <Icon source={{uri: completed}} />
-              )}
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Todo ellipsizeMode={'tail'} numberOfLines={1}>
-                {todoText}
-              </Todo>
-            </TouchableOpacity>
+            <ToggleTodoContainer>
+              <TouchableOpacity
+                onPress={() => handleToggleTodo(itemId, isCompleted, todoText)}>
+                {isCompleted === '1' ? (
+                  <Icon source={{uri: notCompleted}} />
+                ) : (
+                  <Icon source={{uri: completed}} />
+                )}
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Todo ellipsizeMode={'tail'} numberOfLines={1}>
+                  {todoText}
+                </Todo>
+              </TouchableOpacity>
+            </ToggleTodoContainer>
             <TouchableOpacity onPress={() => handleDeleteTodo(itemId)}>
-              <Icon source={{uri: trash}} />
+              <Icon marginValue={'1px'} source={{uri: trash}} />
             </TouchableOpacity>
           </Container>
         );
@@ -62,19 +64,25 @@ const Container = styled.View`
   border: 1px solid #efefef;
   margin: 5px;
   border-radius: 2px;
-  padding: 20px;
+  padding: 10px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
 
+const ToggleTodoContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-right: 5px;
+`;
 const Todo = styled.Text`
-  font-size: 12px;
+  font-size: 14px;
+  margin: 15px 0px;
+  width: 295px;
 `;
 
 const Icon = styled.Image`
   width: 25px;
   height: 25px;
+  margin-right: ${props => props.marginValue || '10px'};
 `;
-
-// onPress={() => toggleTodo(todo.id)}

@@ -41,7 +41,7 @@ export default InputBar;
 const Container = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: 10px;
+  margin: 10px;
 `;
 
 const InputBox = styled.TextInput`
@@ -49,14 +49,14 @@ const InputBox = styled.TextInput`
   border-radius: 2px;
   background-color: #eaeaea;
   height: 50;
-  padding: 10px;
+  padding: 5px;
   flex: 1;
 `;
 
 const AddButton = styled.Image`
   height: 30;
   width: 30;
-  padding: 10px;
+  margin: 0px 10px;
   justify-content: center;
   align-items: center;
 `;

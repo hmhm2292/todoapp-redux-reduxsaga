@@ -14,10 +14,25 @@ const todoItem = (state = INITIAL_STATE, action) => {
         loading: false,
       };
 
+    case types.ADD_TODO_REQUEST:
+      return {...state, loading: true};
+
     case types.ADD_TODO_FAILED:
       return action.error;
 
+    case types.DELETE_TODO_REQUEST:
+      return {...state, loading: true};
+
     case types.DELETE_TODO_FAILED:
+      return action.error;
+
+    case types.TOGGLE_TODO_REQUEST:
+      return {...state, loading: true};
+
+    case types.UPDATE_TODO_REQUEST:
+      return {...state, loading: true};
+
+    case types.UPDATE_TODO_FAILED:
       return action.error;
 
     // case types.TOGGLE_TODO: {

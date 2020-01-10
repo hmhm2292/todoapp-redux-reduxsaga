@@ -49,7 +49,7 @@ function* changeTodo(action) {
       yield call(fetchTodo);
     }
   } catch (error) {
-    yield put({type: types.TOGGLE_TODO_FAILED, error: error});
+    yield put({type: types.UPDATE_TODO_FAILED, error: error});
   }
 }
 

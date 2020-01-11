@@ -9,7 +9,13 @@ const completed =
 const trash =
   'https://cdn2.iconfinder.com/data/icons/outline-icons-1/72/trashcan-512.png';
 
-const TodoList = ({todoList, toggleTodoAction, deleteTodoAction}) => {
+const TodoList = ({
+  todoList,
+  toggleTodoAction,
+  deleteTodoAction,
+  goToDetailAction,
+  navigation,
+}) => {
   // console.log(todoList);
 
   const handleToggleTodo = (itemId, isCompleted, todoText) => {
@@ -20,16 +26,28 @@ const TodoList = ({todoList, toggleTodoAction, deleteTodoAction}) => {
     deleteTodoAction(itemId);
   };
 
-  console.log('rdner');
+  const goToDetail = item => {
+    goToDetailAction(item);
+    navigation.navigate('TodoDetailScreen');
+  };
+
   return (
     <FlatList
       bounces={false}
       keyExtractor={item => item.id.toString()}
       data={todoList}
       renderItem={({item}) => {
-        const isCompleted = item.content.split('#')[0];
-        const todoText = item.content.split('#')[1];
+        const todoSplitWithSharp = item.content.split('#');
+        let isCompleted;
+        let todoText;
         const itemId = item.id;
+        if (todoSplitWithSharp.length > 2) {
+          isCompleted = todoSplitWithSharp[0];
+          todoText = todoSplitWithSharp.splice(1).join('#');
+        } else if (todoSplitWithSharp.length === 2) {
+          isCompleted = todoSplitWithSharp[0];
+          todoText = todoSplitWithSharp[1];
+        }
 
         return (
           <Container>
@@ -42,7 +60,7 @@ const TodoList = ({todoList, toggleTodoAction, deleteTodoAction}) => {
                   <Icon source={{uri: completed}} />
                 )}
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => goToDetail(itemId)}>
                 <Todo ellipsizeMode={'tail'} numberOfLines={1}>
                   {todoText}
                 </Todo>

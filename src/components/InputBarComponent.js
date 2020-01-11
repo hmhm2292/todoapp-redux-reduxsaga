@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 
 class InputBar extends Component {
@@ -47,7 +47,6 @@ const Container = styled.View`
 const InputBox = styled.TextInput`
   border: 1px solid black;
   border-radius: 2px;
-  background-color: #eaeaea;
   height: 50;
   padding: 5px;
   flex: 1;

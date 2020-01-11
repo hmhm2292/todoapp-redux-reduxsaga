@@ -1,13 +1,9 @@
-// import React from 'react';
-// import {SafeAreaView, Text} from 'react-native';
-// import InputTodo from './containers/InputTodo';
+import React from 'react';
+import {SafeAreaView, Text} from 'react-native';
+import AppNavigator from './navigation/AppNavigator';
 
-// const TodoApp = () => {
-//   return (
-//     <SafeAreaView>
-//       <InputTodo />
-//     </SafeAreaView>
-//   );
-// };
+const TodoApp = () => {
+  return <AppNavigator />;
+};
 
-// export default TodoApp;
+export default TodoApp;

@@ -26,28 +26,41 @@ const todoItem = (state = INITIAL_STATE, action) => {
     case types.DELETE_TODO_FAILED:
       return action.error;
 
-    case types.TOGGLE_TODO_REQUEST:
-      return {...state, loading: true};
+    case types.TOGGLE_TODO_SUCCESS:
+      return {
+        ...state,
+        todoList: state.todoList.map(todo => {
+          if (todo.id === action.toggledTodo.id) {
+            return action.toggledTodo;
+          } else {
+            return todo;
+          }
+        }),
+        todoDetail: action.toggledTodo,
+      };
 
-    case types.UPDATE_TODO_REQUEST:
-      return {...state, loading: true};
+    case types.UPDATE_TODO_SUCCESS:
+      return {
+        ...state,
+        todoList: state.todoList.map(todo => {
+          if (todo.id === action.updatedTodo.id) {
+            return action.updatedTodo;
+          } else {
+            return todo;
+          }
+        }),
+        todoDetail: action.updatedTodo,
+      };
 
     case types.UPDATE_TODO_FAILED:
       return action.error;
 
-    // case types.TOGGLE_TODO: {
-    //   return state.map(todo => {
-    //     if (todo.id === action.itemId) {
-    //       if (action.isCompleted === '1') {
-    //         return {...todo, id: action.id, content: `0#${action.todoText}`};
-    //       } else if (action.isCompleted === '0') {
-    //         return {...todo, id: action.id, content: `1#${action.todoText}`};
-    //       }
-    //     } else {
-    //       return todo;
-    //     }
-    //   });
-    // }
+    case types.GOTO_TODO_DETAIL:
+      return {
+        ...state,
+        todoDetail: state.todoList.filter(todo => todo.id === action.itemId)[0],
+        todoDetailId: action.itemId,
+      };
 
     default:
       return state;

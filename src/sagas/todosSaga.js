@@ -6,7 +6,7 @@ import {Api} from './Api';
 const API = 'http://34.66.158.83:8000/todo';
 
 function* fetchTodo() {
-  console.log('fetchTodo');
+  // console.log('fetchTodo');
   try {
     const fetchedTodoList = yield Api.fetchTodoList();
     yield put({
@@ -18,11 +18,10 @@ function* fetchTodo() {
   }
 }
 
-function* postTodo(action) {
+function* addTodo(action) {
   try {
-    console.log('pass');
+    // console.log('pass');
     const sendTodo = yield Api.addTodo(action);
-    console.log(sendTodo);
     if (sendTodo === true) {
       yield call(fetchTodo);
     }
@@ -31,7 +30,7 @@ function* postTodo(action) {
   }
 }
 
-function* eraseTodo(action) {
+function* deleteTodo(action) {
   try {
     const deletedTodo = yield Api.deleteTodo(action);
     if (deletedTodo === true) {
@@ -42,12 +41,21 @@ function* eraseTodo(action) {
   }
 }
 
-function* changeTodo(action) {
+function* toggleTodo(action) {
+  try {
+    const toggledTodo = yield Api.toggleTodo(action);
+    console.log('toggled', toggledTodo);
+    yield put({type: types.TOGGLE_TODO_SUCCESS, toggledTodo: toggledTodo});
+    // yield call(fetchTodo);
+  } catch (error) {
+    yield put({type: types.TOGGLE_TODO_FAILED, error: error});
+  }
+}
+
+function* updateTodo(action) {
   try {
     const updatedTodo = yield Api.updateTodo(action);
-    if (updatedTodo === true) {
-      yield call(fetchTodo);
-    }
+    yield put({type: types.UPDATE_TODO_SUCCESS, updatedTodo: updatedTodo});
   } catch (error) {
     yield put({type: types.UPDATE_TODO_FAILED, error: error});
   }
@@ -60,28 +68,20 @@ export function* watchFetchTodo() {
 
 export function* watchAddTodo() {
   console.log('watchADDTODO');
-  yield takeLatest(types.ADD_TODO_REQUEST, postTodo);
+  yield takeLatest(types.ADD_TODO_REQUEST, addTodo);
 }
 
 export function* watchDeleteTodo() {
   console.log('WatchDelete');
-  yield takeLatest(types.DELETE_TODO_REQUEST, eraseTodo);
+  yield takeLatest(types.DELETE_TODO_REQUEST, deleteTodo);
 }
 
 export function* watchToggleTodo() {
   console.log('watchToggle');
-  yield takeLatest(types.TOGGLE_TODO_REQUEST, changeTodo);
+  yield takeLatest(types.TOGGLE_TODO_REQUEST, toggleTodo);
 }
 
-// function* updateTodo() {
-//   const response = yield fetch(API, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       'content' : "",
-//     })
-//   });
-//   const updatedTodoList = yield response.status === 200? console.log(response)
-// }
+export function* watchUpdateTodo() {
+  console.log('watchUpdate');
+  yield takeLatest(types.UPDATE_TODO_REQUEST, updateTodo);
+}

@@ -15,7 +15,7 @@ function* fetchTodoList() {
 }
 
 function* addTodo(action) {
-  console.log('my action', action.newTodo);
+  // console.log('my action', action.newTodo);
   const response = yield fetch(`${API}/`, {
     method: 'POST',
     headers: {
@@ -25,20 +25,37 @@ function* addTodo(action) {
       content: action.newTodo,
     }),
   });
-  yield console.log('aa', typeof response.status);
+  // yield console.log('aa', typeof response.status);
   return yield response.status === 201;
 }
 
 function* deleteTodo(action) {
-  console.log(action.itemId);
+  // console.log(action.itemId);
   const response = yield fetch(`${API}/${action.itemId}/`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  yield console.log('delete', response.status);
+  // yield console.log('delete', response.status);
   return yield response.status === 204;
+}
+
+function* toggleTodo(action) {
+  // console.log('my updated', action.toggledTodo);
+  const response = yield fetch(`${API}/${action.itemId}/`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      content: action.toggledTodo,
+    }),
+  });
+  const toggledTodoDetail = yield response.status === 200
+    ? response.json(toggledTodoDetail)
+    : [];
+  return toggledTodoDetail;
 }
 
 function* updateTodo(action) {
@@ -52,8 +69,10 @@ function* updateTodo(action) {
       content: action.updatedTodo,
     }),
   });
-  yield console.log('aa', typeof response.status);
-  return yield response.status === 200;
+  const updatedTodoDetail = yield response.status === 200
+    ? response.json(updatedTodoDetail)
+    : [];
+  return updatedTodoDetail;
 }
 
-export const Api = {fetchTodoList, addTodo, deleteTodo, updateTodo};
+export const Api = {fetchTodoList, addTodo, deleteTodo, toggleTodo, updateTodo};

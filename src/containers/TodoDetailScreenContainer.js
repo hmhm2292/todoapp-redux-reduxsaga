@@ -3,11 +3,12 @@ import {
   addTodoAction,
   toggleTodoAction,
   deleteTodoAction,
-  goToDetailAction,
+  updateTodoAction,
 } from '../actions';
-import TodoListComponent from '../components/TodoListComponent';
+import TodoDetailScreen from '../screens/TodoDetailScreen';
 
 const mapStateToProps = state => ({
+  todoDetail: state.todoItem.todoDetail,
   todoList: state.todoItem.todoList,
 });
 
@@ -15,7 +16,8 @@ const mapDispatchToProps = dispatch => ({
   toggleTodoAction: (itemId, isCompleted, todoText) =>
     dispatch(toggleTodoAction(itemId, isCompleted, todoText)),
   deleteTodoAction: itemId => dispatch(deleteTodoAction(itemId)),
-  goToDetailAction: itemId => dispatch(goToDetailAction(itemId)),
+  updateTodoAction: (itemId, isCompleted, todoText) =>
+    dispatch(updateTodoAction(itemId, isCompleted, todoText)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoListComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoDetailScreen);

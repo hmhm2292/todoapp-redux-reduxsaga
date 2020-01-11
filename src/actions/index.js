@@ -34,10 +34,37 @@ export const addTodoFailedAction = error => ({
 export const toggleTodoAction = (itemId, isCompleted, todoText) => ({
   type: types.TOGGLE_TODO_REQUEST,
   itemId: itemId,
-  updatedTodo: isCompleted === '1' ? `0#${todoText}` : `1#${todoText}`,
+  toggledTodo: isCompleted === '1' ? `0#${todoText}` : `1#${todoText}`,
 });
+
+export const toggleTodoSuccessAction = toggledTodo => (
+  console.log('toggled', toggledTodo),
+  {
+    type: types.TOGGLE_TODO_SUCCESS,
+    toggledTodo,
+  }
+);
+
+export const updateTodoAction = (itemId, isCompleted, todoText) => (
+  console.log('updateTodoAction', itemId, isCompleted, todoText),
+  {
+    type: types.UPDATE_TODO_REQUEST,
+    itemId: itemId,
+    updatedTodo: isCompleted === '1' ? `1#${todoText}` : `0#${todoText}`,
+  }
+);
 
 export const deleteTodoAction = itemId => ({
   type: types.DELETE_TODO_REQUEST,
   itemId,
 });
+
+export const goToDetailAction = itemId => (
+  console.log('detailId', itemId),
+  {
+    type: types.GOTO_TODO_DETAIL,
+    itemId,
+  }
+);
+
+export const goToEditDetail = () => ({});

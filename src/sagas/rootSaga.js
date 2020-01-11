@@ -5,16 +5,17 @@ import {
   watchAddTodo,
   watchDeleteTodo,
   watchToggleTodo,
+  watchUpdateTodo,
 } from './todosSaga';
 
 export default function* rootSaga() {
   console.log('rootSaga');
 
-  // yield call(watchFetchTodo);
   yield all([
     fork(watchFetchTodo),
     fork(watchAddTodo),
     fork(watchDeleteTodo),
     fork(watchToggleTodo),
+    fork(watchUpdateTodo),
   ]);
 }

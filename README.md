@@ -10,6 +10,8 @@ React Native/Javascript/styled-components/React Navigation/Redux/Redux Saga
 
 #### Features
 
-User is able to crete a new todo, delete the todo, toggle if the todo if it is completed, and when the use clicked on the todo, it will take the user to the todo detail page where the user is able to edit the todo.
+User is able to crete a new todo, delete the todo, toggle the todo, and when the user clicks on the todo, it will take the user to the todo detail page where the user is able to edit the todo.
 
 ## Screen Shot
+
+![](https://github.com/hmhm2292/todoapp-redux-reduxsaga/blob/master/AppImage/ezgif.com-video-to-gif.gif)

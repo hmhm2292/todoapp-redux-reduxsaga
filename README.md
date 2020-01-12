@@ -14,4 +14,4 @@ User is able to crete a new todo, delete the todo, toggle the todo, and when the
 
 ## Screen Shot
 
-![](https://github.com/hmhm2292/todoapp-redux-reduxsaga/blob/master/AppImage/ezgif.com-video-to-gif.gif)
+![]()

@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native';
 import InputBarContainer from '../containers/InputBarContainer';
 import TodoListContainer from '../containers/TodoListContainer';
 import LoadingContainer from '../containers/LoadingContainer';
 
-class MainScreen extends React.Component {
-  componentDidMount() {
-    this.props.fetchTodoListAction();
-  }
-  render() {
-    return (
-      <SafeAreaView>
-        <InputBarContainer />
-        <LoadingContainer />
-        <TodoListContainer navigation={this.props.navigation} />
-      </SafeAreaView>
-    );
-  }
-}
+const MainScreen = ({fetchTodoListAction, navigation}) => {
+  useEffect(() => {
+    fetchTodoListAction();
+  }, []);
+
+  return (
+    <SafeAreaView>
+      <InputBarContainer />
+      <LoadingContainer />
+      <TodoListContainer navigation={navigation} />
+    </SafeAreaView>
+  );
+};
 
 export default MainScreen;

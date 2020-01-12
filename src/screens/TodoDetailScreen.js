@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import styled from 'styled-components';
+import LinearGradient from 'react-native-linear-gradient';
 
 const TodoDetailScreen = ({
   deleteTodoAction,
@@ -23,7 +24,7 @@ const TodoDetailScreen = ({
   }
 
   const [updatedTodo, setUpdatedTodo] = useState(todoText);
-  console.log('useSate', updatedTodo);
+  // console.log('useSate', updatedTodo);
 
   const handleChangeText = updatedTodo => {
     setUpdatedTodo(updatedTodo);
@@ -52,19 +53,37 @@ const TodoDetailScreen = ({
           </MyTodo>
         </MyTodoContainer>
         <Options>
-          <ButtonContainer onPress={handleToggleTodo}>
-            {isCompleted === '1' ? (
-              <Button>Changed to Completed</Button>
-            ) : (
-              <Button>Change to Not Completed</Button>
-            )}
-          </ButtonContainer>
-          <ButtonContainer onPress={() => handleDeleteTodo(todoDetail.id)}>
-            <Button>Delete</Button>
-          </ButtonContainer>
-          <ButtonContainer onPress={updatedTodo ? updateTodo : null}>
-            <Button>Update</Button>
-          </ButtonContainer>
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#00ffef', '#60d4cd', '#35b2ff']}
+            style={{borderRadius: 10}}>
+            <ButtonContainer onPress={handleToggleTodo}>
+              {isCompleted === '1' ? (
+                <Button>Change to Completed</Button>
+              ) : (
+                <Button>Change to Not Completed</Button>
+              )}
+            </ButtonContainer>
+          </LinearGradient>
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#00ffef', '#60d4cd', '#35b2ff']}
+            style={{borderRadius: 10}}>
+            <ButtonContainer onPress={() => handleDeleteTodo(todoDetail.id)}>
+              <Button>Delete</Button>
+            </ButtonContainer>
+          </LinearGradient>
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#00ffef', '#60d4cd', '#35b2ff']}
+            style={{borderRadius: 10}}>
+            <ButtonContainer onPress={updatedTodo ? updateTodo : null}>
+              <Button>Update</Button>
+            </ButtonContainer>
+          </LinearGradient>
         </Options>
       </Container>
     </SafeAreaView>
@@ -82,7 +101,8 @@ const MyTodoContainer = styled.View`
 `;
 
 const MyTodo = styled.TextInput`
-  border: 1px solid #efefef;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
   min-height: 300px;
   padding: 10px;
 `;
@@ -97,11 +117,11 @@ const ButtonContainer = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 2px;
-  border: 1px solid #efefef;
   height: 40px;
   width: 110px;
 `;
 const Button = styled.Text`
   font-size: 14px;
+  color: white;
+  font-weight: bold;
 `;

@@ -3,11 +3,11 @@ import {TouchableOpacity, FlatList} from 'react-native';
 import styled from 'styled-components';
 
 const notCompleted =
-  'https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-512.png';
+  'https://cdn0.iconfinder.com/data/icons/harmonicons-02/64/circle-256.png';
 const completed =
-  'https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-512.png';
+  'https://cdn0.iconfinder.com/data/icons/harmonicons-02/64/check-circle-256.png';
 const trash =
-  'https://cdn2.iconfinder.com/data/icons/outline-icons-1/72/trashcan-512.png';
+  'https://cdn0.iconfinder.com/data/icons/webshop/32/trash-01-256.png';
 
 const TodoList = ({
   todoList,
@@ -79,9 +79,10 @@ const TodoList = ({
 export default TodoList;
 
 const Container = styled.View`
-  border: 1px solid #efefef;
+  border: 1px solid #e2e2e2;
   margin: 5px;
-  border-radius: 2px;
+  border-radius: 5px;
+  background-color: white;
   padding: 10px;
   flex-direction: row;
   align-items: center;
@@ -100,7 +101,7 @@ const Todo = styled.Text`
 `;
 
 const Icon = styled.Image`
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   margin-right: ${props => props.marginValue || '10px'};
 `;

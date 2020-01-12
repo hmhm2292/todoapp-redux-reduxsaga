@@ -7,6 +7,7 @@ const RootStack = createStackNavigator({
   MainScreen: {
     screen: MainScreenContainer,
     navigationOptions: {
+      title: null,
       headerShown: false,
       cardStyle: {backgroundColor: 'white'},
     },

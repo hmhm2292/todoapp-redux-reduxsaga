@@ -39,6 +39,9 @@ const todoItem = (state = INITIAL_STATE, action) => {
         todoDetail: action.toggledTodo,
       };
 
+    case types.TOGGLE_TODO_FAILED:
+      return action.error;
+
     case types.UPDATE_TODO_SUCCESS:
       return {
         ...state,

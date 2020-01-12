@@ -1,10 +1,5 @@
 import {connect} from 'react-redux';
-import {
-  addTodoAction,
-  toggleTodoAction,
-  deleteTodoAction,
-  updateTodoAction,
-} from '../actions';
+import {toggleTodoAction, deleteTodoAction, updateTodoAction} from '../actions';
 import TodoDetailScreen from '../screens/TodoDetailScreen';
 
 const mapStateToProps = state => ({

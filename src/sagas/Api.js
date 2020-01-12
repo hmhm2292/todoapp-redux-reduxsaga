@@ -1,5 +1,3 @@
-// import {connect} from 'react-redux';
-
 const API = 'http://34.66.158.83:8000/todo';
 
 function* fetchTodoList() {

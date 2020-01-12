@@ -2,9 +2,6 @@ import React from 'react';
 import store from './src/store';
 import {Provider} from 'react-redux';
 import TodoApp from './src/TodoApp';
-import MainScreenContainer from './src/containers/MainScreenContainer';
-import TodoDetailScreen from './src/screens/TodoDetailScreen';
-import AppNavigator from './src/navigation/AppNavigator';
 
 /**
  * Store - holds our state = There IS ONLY ONE STORE
@@ -19,8 +16,6 @@ const App = () => {
   return (
     <Provider store={store}>
       <TodoApp />
-
-      {/* <MainScreenContainer /> */}
     </Provider>
   );
 };

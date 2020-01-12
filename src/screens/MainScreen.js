@@ -1,6 +1,5 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-
 import InputBarContainer from '../containers/InputBarContainer';
 import TodoListContainer from '../containers/TodoListContainer';
 import LoadingContainer from '../containers/LoadingContainer';
@@ -10,7 +9,6 @@ class MainScreen extends React.Component {
     this.props.fetchTodoListAction();
   }
   render() {
-    // console.log(this.props);
     return (
       <SafeAreaView>
         <InputBarContainer />

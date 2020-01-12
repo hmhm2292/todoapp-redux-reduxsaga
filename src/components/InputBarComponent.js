@@ -28,7 +28,10 @@ class InputBar extends Component {
         <TouchableOpacity
           onPress={this.state.newTodo ? this.actionAddTodo : null}>
           <AddButton
-            source={{uri: 'https://img.icons8.com/doodle/48/000000/add.png'}}
+            source={{
+              uri:
+                'https://cdn3.iconfinder.com/data/icons/flat-circle-content/512/flat-style-circle-add-2-512.png',
+            }}
           />
         </TouchableOpacity>
       </Container>
@@ -42,11 +45,12 @@ const Container = styled.View`
   flex-direction: row;
   align-items: center;
   margin: 10px;
+  justify-content: space-between;
 `;
 
 const InputBox = styled.TextInput`
-  border: 1px solid black;
-  border-radius: 2px;
+  border-bottom-width: 1px;
+  border-bottom-color: #e2e2e2
   height: 50;
   padding: 5px;
   flex: 1;
@@ -55,7 +59,7 @@ const InputBox = styled.TextInput`
 const AddButton = styled.Image`
   height: 30;
   width: 30;
-  margin: 0px 10px;
+  margin: 0px 2px 0px 10px;
   justify-content: center;
   align-items: center;
 `;

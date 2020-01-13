@@ -30,5 +30,3 @@ export const goToDetailAction = itemId => ({
   type: types.GOTO_TODO_DETAIL,
   itemId,
 });
-
-export const goToEditDetail = () => ({});

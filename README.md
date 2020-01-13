@@ -8,15 +8,13 @@ React Native/Javascript/styled-components/React Navigation/Redux/Redux Saga
 
 ## Installation
 
-1. Fork the project to yours.
-
-2. Git clone your forked repository.
+1. Git clone your forked repository.
 
    ```
    https://github.com/<your-id>/todoapp-redux-reduxsaga.git
    ```
 
-3. Install your packages.
+2. Install your packages.
 
    ```
    yarn or npm install
@@ -25,24 +23,32 @@ React Native/Javascript/styled-components/React Navigation/Redux/Redux Saga
 - Note that I recommend using yarn .
 - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
 
-4. Run pod install (if running on iOS)
+3. Run pod install (if running on iOS)
 
 - `cd ios && pod install`
 
-5. Run your project
+4. Run your project
 
-1. **Run metro bundler**
+5. **Run metro bundler**
 
    - Xcode or Android studio should be installed.
 
    ```
-   yarn ios or yarn android
+   yarn ios
+   ```
+
+   ```
+   yarn android
    ```
 
    or
 
    ```
-   npx react-native run-ios or npx react-native-android
+   npx react-native run-ios
+   ```
+
+   ```
+   npx react-native-android
    ```
 
 ## Details
@@ -63,47 +69,39 @@ App Video Link: https://www.notion.so/Hyung-Mok-Kim-s-Story-1b59d61ba4be44418dc7
 
 ### File Structure
 
+To read a version translated in Korean click here
+
 ```
 +-- /src
 |   +-- /actions
-
 |   |   +-- actionTypes.js
 |   |   +-- index.js
-
 |   +-- /components
 |   |   +-- InputBarComponent.js
 |   |   +-- LoadingComponent.js
 |   |   +-- TodoDetailComponent.js
 |   |   +-- TodoListComponent.js
-
 |   +-- /containers
 |   |   +-- InputBarContainer.js
 |   |   +-- LoadingContainer.js
 |   |   +-- MainScreenContainer.js
 |   |   +-- TodoDetailContainer.js
 |   |   +-- TodoListContainer.js
-
 |   +-- /navigation
 |   |   +-- AppNavigator.js
-
 |   +-- /reducers
 |   |   +-- index.js
 |   |   +-- todoItems.js
-
 |   +-- /sagas
 |   |   +-- Api.js
 |   |   +-- rootSaga.js
 |   |   +-- todoSaga.js
-
 |   +-- screens
 |   |   +-- MainScreen.js
 |   |   +-- TodoDetailScreen.js
-
 |   +-- store
 |   |   +-- index.js
-
 |   +-- TodoApp.js
-
 +-- App.js
 ```
 
@@ -112,116 +110,116 @@ App Video Link: https://www.notion.so/Hyung-Mok-Kim-s-Story-1b59d61ba4be44418dc7
 Ex:
 
 ```
-export const  fetchTodoListAction  =  ()  =>  ({
-type:  types.FETCH_TODO_LIST,
+export const fetchTodoListAction = () =>({
+  type: types.FETCH_TODO_LIST,
 });
 ```
 
-actions / index.js 파일에서 모든 액션 생성자가있는 곳 입니다.
+In the actions/index.js file, is where all the action creators are, where it lets the reducer know how to deal with the type of actions the user initiates.
 
-위의 예는 TodoList 를 가져오는 액션 생성자를 보여줍니다.
+The above example shows an action creator to fetch the todo list.
 
 **/components**
-기능단위의 컴포넌트를 모아놓은 폴더 입니다.
+Contains components that is divided by features and their related styles.
 
 **/containers**
-Redux 관련 로직들은 여기에 있습니다.
-react-redux의 mapStateToProps , mapDispatchToProps 를 connect function 을 사용하여 컴포넌트를 Redux에 연결합니다.
+Redux-related logic is placed here. Connects the components to Redux using the connect function from react-redux.
 
 **/navigation**
-앱의 모든 navigation 기능들이 포함되어 있습니다.
+All the navigation features are placed in the navigation folder.
 
 **/reducers**
-reducers / index.js 파일에는 모든 reducers 가 combine되어 있습니다.
+In the reducers/index.js file is where all the reducers are combined.
 
 ```
-const  rootReducer  =  combineReducers({
-	todoItem: todoItem,
+const rootReducer = combineReducers({
+  todoItem: todoItem,
 });
 ```
 
-reducers / todoItem.js 파일에서 action을 감지하여 dispatch되면 실행할 reducer가 있습니다.
+In the reducers/todoItem.js file is where the reducer is placed to determine the changes to an application's state (In this the state is the todoItem).
 
 ```
-const  todoItem  =  (state  =  INITIAL_STATE,  action)  =>  {
-	switch  (action.type)  {
-		case  types.FETCH_TODO_LIST:
-			return {...state, loading:  true};
-		case  types.FETCH_TODO_SUCCESS:
+const todoItem = (state = INITIAL_STATE, action)  =>  {
+	switch (action.type) {
+		case types.FETCH_TODO_LIST:
+			return {...state, loading: true};
+		case types.FETCH_TODO_SUCCESS:
 			return {
 				...state,
-				todoList:  action.fetchedTodoList,
-				loading:  false,
+				todoList: action.fetchedTodoList,
+				loading: false,
 			}
-		case  types.FETCH_TODO_FAILED:
+		case types.FETCH_TODO_FAILED:
 			return action.error;
-		}
 	}
-};
+}
+
 ```
 
-"FETCH_TODO_LIST" action이 전달되면 loading state가 true가되고 로딩바가 화면에 보입니다.
+Here, when the action "FETCH_TODO_LIST" gets dispatched, the state of loading becomes true and the loading component appears.
 
-"FETCH_TODO_SUCCESS"action이 전달되면 loading state가 false로 변경되고 state 는 fetched 된 todolist data 로 업데이트됩니다.
+Once the action "FETCH_TODO_SUCCESS" gets dispatched, the state of the loading changes to false, and the state gets updated with the fetched todo list.
 
 **/sagas**
 
-Store 에 있는 state 를 변경하는 action dispatcher와 API 호출를 하는 모든 로직들이 포함되어있습니다.
+Contains all the logic for fetching API and dispatching actions to change the current state in the store.
 
-sagas/rootSaga.js는 모든 actionWatchers를 모아놓은 곳입니다.
+In the sagas/rootSaga.js is where all the actionWatchers are imported placed.
 
 ```
-export  default  function*  rootSaga() {
-	yield  all([fork(watchFetchTodo)]);
+export default function* rootSaga() {
+	yield all([fork(watchFetchTodo)]);
 }
 ```
 
-saga / todosSagas.js에서 모든 actionWatchers를 export 합니다.
+saga/todosSagas.js is where all the actionWatchers are exported.
 
 ```
-export  function*  watchFetchTodo() {
-	yield  takeLatest(types.FETCH_TODO_LIST,  fetchTodo);
+export function* watchFetchTodo() {
+	yield takeLatest(types.FETCH_TODO_LIST, fetchTodo);
 }
 
-function*  fetchTodo() {
+function* fetchTodo() {
 	try {
-		const  fetchedTodoList  = yield Api.fetchTodoList();
-		yield  put({
+		const fetchedTodoList = yield Api.fetchTodoList();
+		yield put({
 			type: types.FETCH_TODO_SUCCESS,
 			fetchedTodoList: fetchedTodoList,
 		});
 	} catch (error) {
-		yield  put({type: types.FETCH_TODO_FAILED, error: error});
+		yield put({type: types.FETCH_TODO_FAILED, error: error});
 		}
 	}
 ```
 
-위의 코드는 SAGA에게 FETCH_TODO_LIST action이 실행되는지 지켜보다가 실행될때 fetchTodo 함수를 호출하도록 지시합니다. fetchTodo 함수 내부에서 API에 대한 비동기 호출이 발생하고 요청이 도착하면 다음 action "FETCH_TODO_SUCCESSFUL"이 전달됩니다. "FETCH_TODO_SUCCESSFUL" 은 fetchTodo 함수 내에서 dispatch 되기 때문에 action / index.js 파일에 작성되지 않은 것을 볼 수 있습니다.
+The code above tells SAGA to wait for the action FETCH_TODO_LIST and calls the fetchTodo function.
+Inside of the fetchTodo function happens an asynchronous call to API and when the request has arrived the next action “FETCH_TODO_SUCCESSFUL" is dispatched. You will see that the action “FETCH_TODO_SUCCESSFUL” is not written in the actions/index.js file because it’s fully described here.
 
-sagas / Api.js 파일에서 모든 Api fetch 함수가 배치됩니다.
+In the sagas/Api.js file is where all the Api fetch functions are placed.
 
 ```
-function*  fetchTodoList() {
-	const  response  = yield fetch(API,  {
-		headers:  {
-		'Content-Type':  'application/json',
+function* fetchTodoList() {
+	const response = yield fetch(API, {
+		headers: {
+		'Content-Type': 'application/json',
 		},
 	});
-	const  fetchedTodoList  = yield response.status  ===  200
-	?  response.json(fetchedTodoList)
+	const fetchedTodoList = yield response.status === 200
+	? response.json(fetchedTodoList)
 	: [];
-	return  fetchedTodoList;
+	return fetchedTodoList;
 }
 ```
 
 **/screens**
 
-앱의 모든 화면 컴포넌트 들이 포함 된 폴더입니다.
+Folder for all the screens in the app.
 
 **/store**
 
-index.js 파일에서 redux store를 초기화했습니다. 이 store는 미들웨어 SAGA를 사용합니다.
+In this file I’ve initialized redux store . This store uses the SAGA middleware.
 
-### 왜 이렇게 구현을 했는지?
+### Why was folder tree constructed this way?
 
-앱의 확장성과 유지보수의 편의를 고려하여 좀 더 기능을 세분화하여 나누었습니다. 예로 컴포넌트들은 기능별로 나누었고, 현재 reducer가 1개 뿐이지만 나중에 추가될 가능성을 고려하여 action의정의 , action 생성자, containers , reducer , Todo 기능을 위한 Saga를 따로 관리하였습니다.
+The app's folder tree was construted this way with the consideration of the app's scalability and ease of maintenance. For example, the components are broken down by features so that whenever there is a bug in a feature, it is easier to locate and manage the bug. Also there is only one reducer at the moment, and one Saga file for that reducer, however each reducer, saga, action creators are all independently created with the consideration of new reducers, saga, and action creators to be the possibility to be added later.

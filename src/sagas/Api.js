@@ -13,7 +13,6 @@ function* fetchTodoList() {
 }
 
 function* addTodo(action) {
-  // console.log('my action', action.newTodo);
   const response = yield fetch(`${API}/`, {
     method: 'POST',
     headers: {
@@ -23,19 +22,19 @@ function* addTodo(action) {
       content: action.newTodo,
     }),
   });
-  // yield console.log('aa', typeof response.status);
-  return yield response.status === 201;
+  const addedTodo = yield response.status === 201
+    ? response.json(addedTodo)
+    : {};
+  return addedTodo;
 }
 
 function* deleteTodo(action) {
-  // console.log(action.itemId);
   const response = yield fetch(`${API}/${action.itemId}/`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  // yield console.log('delete', response.status);
   return yield response.status === 204;
 }
 
@@ -52,7 +51,7 @@ function* toggleTodo(action) {
   });
   const toggledTodoDetail = yield response.status === 200
     ? response.json(toggledTodoDetail)
-    : [];
+    : {};
   return toggledTodoDetail;
 }
 
@@ -69,7 +68,7 @@ function* updateTodo(action) {
   });
   const updatedTodoDetail = yield response.status === 200
     ? response.json(updatedTodoDetail)
-    : [];
+    : {};
   return updatedTodoDetail;
 }
 

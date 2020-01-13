@@ -17,6 +17,13 @@ const todoItem = (state = INITIAL_STATE, action) => {
     case types.ADD_TODO_REQUEST:
       return {...state, loading: true};
 
+    case types.ADD_TODO_SUCCESS:
+      return {
+        ...state,
+        todoList: state.todoList.concat(action.addedTodo),
+        loading: false,
+      };
+
     case types.ADD_TODO_FAILED:
       return action.error;
 

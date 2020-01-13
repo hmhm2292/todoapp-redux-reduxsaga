@@ -1,4 +1,4 @@
-import {call, all, fork, spawn} from 'redux-saga/effects';
+import {all, fork} from 'redux-saga/effects';
 
 import {
   watchFetchTodo,
@@ -9,8 +9,6 @@ import {
 } from './todosSaga';
 
 export default function* rootSaga() {
-  console.log('rootSaga');
-
   yield all([
     fork(watchFetchTodo),
     fork(watchAddTodo),

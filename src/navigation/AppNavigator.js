@@ -1,7 +1,7 @@
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import MainScreenContainer from '../containers/MainScreenContainer';
-import TodoDetailScreenContainer from '../containers/TodoDetailScreenContainer';
+import TodoDetailContainer from '../containers/TodoDetailContainer';
 
 const RootStack = createStackNavigator({
   MainScreen: {
@@ -14,7 +14,7 @@ const RootStack = createStackNavigator({
   },
 
   TodoDetailScreen: {
-    screen: TodoDetailScreenContainer,
+    screen: TodoDetailContainer,
     navigationOptions: {
       title: 'My Todo',
       cardStyle: {backgroundColor: 'white'},

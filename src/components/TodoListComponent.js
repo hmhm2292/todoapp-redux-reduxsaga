@@ -16,8 +16,6 @@ const TodoList = ({
   goToDetailAction,
   navigation,
 }) => {
-  // console.log(todoList);
-
   const handleToggleTodo = (itemId, isCompleted, todoText) => {
     toggleTodoAction(itemId, isCompleted, todoText);
   };

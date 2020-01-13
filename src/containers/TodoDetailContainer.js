@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {toggleTodoAction, deleteTodoAction, updateTodoAction} from '../actions';
-import TodoDetailScreen from '../screens/TodoDetailScreen';
+import TodoDetailComponent from '../components/TodoDetailComponent';
 
 const mapStateToProps = state => ({
   todoDetail: state.todoItem.todoDetail,
@@ -15,4 +15,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateTodoAction(itemId, isCompleted, todoText)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoDetailScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TodoDetailComponent);

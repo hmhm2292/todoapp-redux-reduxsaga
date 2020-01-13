@@ -4,40 +4,15 @@ export const fetchTodoListAction = () => ({
   type: types.FETCH_TODO_LIST,
 });
 
-export const fetchTodoListSuccessAction = fetchedTodoList => ({
-  type: types.FETCH_TODO_SUCCESS,
-  fetchedTodoList,
-});
-
-export const fetchTodoListFailedAction = error => ({
-  type: types.FETCH_TODO_FAILED,
-  error,
-});
-
 export const addTodoAction = newTodo => ({
   type: types.ADD_TODO_REQUEST,
   newTodo: `1#${newTodo}`,
-});
-
-export const addTodoSuccessAction = addedTodo => ({
-  type: types.ADD_TODO_SUCCESS,
-  addedTodo,
-});
-
-export const addTodoFailedAction = error => ({
-  type: types.ADD_TODO_FAILED,
-  error,
 });
 
 export const toggleTodoAction = (itemId, isCompleted, todoText) => ({
   type: types.TOGGLE_TODO_REQUEST,
   itemId: itemId,
   toggledTodo: isCompleted === '1' ? `0#${todoText}` : `1#${todoText}`,
-});
-
-export const toggleTodoSuccessAction = toggledTodo => ({
-  type: types.TOGGLE_TODO_SUCCESS,
-  toggledTodo,
 });
 
 export const updateTodoAction = (itemId, isCompleted, todoText) => ({

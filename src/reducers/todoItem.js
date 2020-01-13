@@ -14,6 +14,9 @@ const todoItem = (state = INITIAL_STATE, action) => {
         loading: false,
       };
 
+    case types.FETCH_TODO_FAILED:
+      return action.error;
+
     case types.ADD_TODO_REQUEST:
       return {...state, loading: true};
 

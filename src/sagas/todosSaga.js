@@ -3,8 +3,6 @@ import {put, takeLatest, call} from 'redux-saga/effects';
 
 import {Api} from './Api';
 
-const API = 'http://34.66.158.83:8000/todo';
-
 function* fetchTodo() {
   try {
     const fetchedTodoList = yield Api.fetchTodoList();

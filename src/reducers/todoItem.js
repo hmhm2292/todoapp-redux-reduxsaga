@@ -30,8 +30,14 @@ const todoItem = (state = INITIAL_STATE, action) => {
     case types.ADD_TODO_FAILED:
       return action.error;
 
-    case types.DELETE_TODO_REQUEST:
-      return {...state, loading: true};
+    // case types.DELETE_TODO_REQUEST:
+    //   return {...state, loading: true};
+
+    case types.DELETE_TODO_SUCCESS:
+      return {
+        ...state,
+        todoList: state.todoList.filter(todo => todo.id !== action.itemId),
+      };
 
     case types.DELETE_TODO_FAILED:
       return action.error;

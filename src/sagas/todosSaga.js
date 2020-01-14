@@ -31,7 +31,8 @@ function* deleteTodo(action) {
   try {
     const deletedTodo = yield Api.deleteTodo(action);
     if (deletedTodo === true) {
-      yield call(fetchTodo);
+      yield put({type: types.DELETE_TODO_SUCCESS, itemId: action.itemId});
+      // yield call(fetchTodo);
     }
   } catch (error) {
     yield put({type: types.DELETE_TODO_FAILED, error: error});

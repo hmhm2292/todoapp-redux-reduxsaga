@@ -17,7 +17,7 @@ const TodoList = ({
   goToDetailAction,
   navigation,
 }) => {
-  console.log('filterStat', filterStatus);
+  console.log('todolist', todoList);
 
   const viewCompleted = todoList
     ? todoList.filter(todo => todo.content.split('#')[0] === '0')

@@ -64,7 +64,7 @@ React Native/Javascript/styled-components/React Navigation/Redux/Redux Saga
 
 App Video Link: https://www.notion.so/Hyung-Mok-Kim-s-Story-1b59d61ba4be44418dc719a226bc29b6
 
-![](https://github.com/hmhm2292/todoapp-redux-reduxsaga/blob/master/AppImage/Screen%20Shot%202020-01-13%20at%208.11.43%20PM.jpg)
+![](https://github.com/hmhm2292/todoapp-redux-reduxsaga/blob/master/AppImage/Screen%20Shot%202020-01-14%20at%207.05.52%20PM.jpg)
 
 ![](https://github.com/hmhm2292/todoapp-redux-reduxsaga/blob/master/AppImage/Screen%20Shot%202020-01-13%20at%208.11.56%20PM.jpg)
 

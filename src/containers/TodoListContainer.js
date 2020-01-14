@@ -4,6 +4,7 @@ import TodoListComponent from '../components/TodoListComponent';
 
 const mapStateToProps = state => ({
   todoList: state.todoItem.todoList,
+  filterStatus: state.filterStatus.filterStatus,
 });
 
 const mapDispatchToProps = dispatch => ({

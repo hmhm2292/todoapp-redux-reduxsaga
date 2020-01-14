@@ -226,4 +226,4 @@ In this file I’ve initialized redux store . This store uses the SAGA middlewar
 
 ### Why was folder tree constructed this way?
 
-The app's folder tree was construted this way with the consideration of the app's scalability and ease of maintenance. For example, the components are broken down by features so that whenever there is a bug in a feature, it is easier to locate and manage the bug. Also there is only one reducer at the moment, and one Saga file for that reducer, however each reducer, saga, action creators are all independently created with the consideration of new reducers, saga, and action creators to be possibility to be added later.
+The app's folder tree was construted this way with the consideration of the app's scalability and ease of maintenance. For example, the components are broken down by features so that whenever there is a bug in a feature, it is easier to locate and manage the bug. Also there is only one reducer at the moment, and one Saga file for that reducer, however each reducer, saga, action creators are all independently created with the consideration of new reducers, saga, and action creators to be possibility added later.

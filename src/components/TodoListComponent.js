@@ -11,11 +11,22 @@ const trash =
 
 const TodoList = ({
   todoList,
+  filterStatus,
   toggleTodoAction,
   deleteTodoAction,
   goToDetailAction,
   navigation,
 }) => {
+  console.log('filterStat', filterStatus);
+
+  const viewCompleted = todoList
+    ? todoList.filter(todo => todo.content.split('#')[0] === '0')
+    : null;
+
+  const viewNotCompleted = todoList
+    ? todoList.filter(todo => todo.content.split('#')[0] === '1')
+    : null;
+
   const handleToggleTodo = (itemId, isCompleted, todoText) => {
     toggleTodoAction(itemId, isCompleted, todoText);
   };
@@ -29,11 +40,20 @@ const TodoList = ({
     navigation.navigate('TodoDetailScreen');
   };
 
+  let todoListFiltered;
+  if (filterStatus === 'View All') {
+    todoListFiltered = todoList;
+  } else if (filterStatus === 'View Completed') {
+    todoListFiltered = viewCompleted;
+  } else if (filterStatus === 'View Not Completed') {
+    todoListFiltered = viewNotCompleted;
+  }
+
   return (
     <FlatList
       bounces={false}
       keyExtractor={item => item.id.toString()}
-      data={todoList}
+      data={todoListFiltered}
       renderItem={({item}) => {
         const todoSplitWithSharp = item.content.split('#');
         let isCompleted;

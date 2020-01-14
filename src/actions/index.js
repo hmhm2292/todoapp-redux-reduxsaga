@@ -30,3 +30,8 @@ export const goToDetailAction = itemId => ({
   type: types.GOTO_TODO_DETAIL,
   itemId,
 });
+
+export const setFilterStatusAction = filterStatus => ({
+  type: types.SET_FILTER_STATUS,
+  filterStatus,
+});

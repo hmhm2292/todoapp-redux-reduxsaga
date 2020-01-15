@@ -5,7 +5,7 @@ import {Api} from './Api';
 
 function* fetchTodo() {
   try {
-    const fetchedTodoList = yield Api.fetchTodoList();
+    const fetchedTodoList = yield call(Api.fetchTodoList);
     yield put({
       type: types.FETCH_TODO_SUCCESS,
       fetchedTodoList: fetchedTodoList,
@@ -17,7 +17,7 @@ function* fetchTodo() {
 
 function* addTodo(action) {
   try {
-    const addedTodo = yield Api.addTodo(action);
+    const addedTodo = yield call(Api.addTodo, action);
     yield put({
       type: types.ADD_TODO_SUCCESS,
       addedTodo: addedTodo,
@@ -29,19 +29,20 @@ function* addTodo(action) {
 
 function* deleteTodo(action) {
   try {
-    const deletedTodo = yield Api.deleteTodo(action);
+    const deletedTodo = yield call(Api.deleteTodo, action);
     if (deletedTodo === true) {
       yield put({type: types.DELETE_TODO_SUCCESS, itemId: action.itemId});
       // yield call(fetchTodo);
     }
   } catch (error) {
+    console.log(error);
     yield put({type: types.DELETE_TODO_FAILED, error: error});
   }
 }
 
 function* toggleTodo(action) {
   try {
-    const toggledTodo = yield Api.toggleTodo(action);
+    const toggledTodo = yield call(Api.toggleTodo, action);
     yield put({type: types.TOGGLE_TODO_SUCCESS, toggledTodo: toggledTodo});
     // yield call(fetchTodo) used to fetch the whole todoList
   } catch (error) {
@@ -51,7 +52,7 @@ function* toggleTodo(action) {
 
 function* updateTodo(action) {
   try {
-    const updatedTodo = yield Api.updateTodo(action);
+    const updatedTodo = yield call(Api.updateTodo, action);
     yield put({type: types.UPDATE_TODO_SUCCESS, updatedTodo: updatedTodo});
   } catch (error) {
     yield put({type: types.UPDATE_TODO_FAILED, error: error});

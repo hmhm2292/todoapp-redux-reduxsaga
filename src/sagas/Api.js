@@ -1,19 +1,18 @@
 const API = 'http://34.66.158.83:8000/todo';
 
-function* fetchTodoList() {
-  const response = yield fetch(API, {
+const fetchTodoList = async () => {
+  const response = await fetch(API, {
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  const fetchedTodoList = yield response.status === 200
-    ? response.json(fetchedTodoList)
-    : [];
+  const fetchedTodoList =
+    (await response.status) === 200 ? response.json(fetchedTodoList) : [];
   return fetchedTodoList;
-}
+};
 
-function* addTodo(action) {
-  const response = yield fetch(`${API}/`, {
+const addTodo = async action => {
+  const response = await fetch(`${API}/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -22,25 +21,24 @@ function* addTodo(action) {
       content: action.newTodo,
     }),
   });
-  const addedTodo = yield response.status === 201
-    ? response.json(addedTodo)
-    : {};
+  const addedTodo =
+    (await response.status) === 201 ? response.json(addedTodo) : {};
   return addedTodo;
-}
+};
 
-function* deleteTodo(action) {
-  const response = yield fetch(`${API}/${action.itemId}/`, {
+const deleteTodo = async action => {
+  const response = await fetch(`${API}/${action.itemId}/`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  return yield response.status === 204;
-}
+  return (await response.status) === 204;
+};
 
-function* toggleTodo(action) {
+const toggleTodo = async action => {
   // console.log('my updated', action.toggledTodo);
-  const response = yield fetch(`${API}/${action.itemId}/`, {
+  const response = await fetch(`${API}/${action.itemId}/`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -49,15 +47,14 @@ function* toggleTodo(action) {
       content: action.toggledTodo,
     }),
   });
-  const toggledTodoDetail = yield response.status === 200
-    ? response.json(toggledTodoDetail)
-    : {};
+  const toggledTodoDetail =
+    (await response.status) === 200 ? response.json(toggledTodoDetail) : {};
   return toggledTodoDetail;
-}
+};
 
-function* updateTodo(action) {
+const updateTodo = async action => {
   console.log('my updated', action.updatedTodo);
-  const response = yield fetch(`${API}/${action.itemId}/`, {
+  const response = await fetch(`${API}/${action.itemId}/`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -66,10 +63,9 @@ function* updateTodo(action) {
       content: action.updatedTodo,
     }),
   });
-  const updatedTodoDetail = yield response.status === 200
-    ? response.json(updatedTodoDetail)
-    : {};
+  const updatedTodoDetail =
+    (await response.status) === 200 ? response.json(updatedTodoDetail) : {};
   return updatedTodoDetail;
-}
+};
 
 export const Api = {fetchTodoList, addTodo, deleteTodo, toggleTodo, updateTodo};
